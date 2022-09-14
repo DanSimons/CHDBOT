@@ -35,14 +35,24 @@ public class TextDraft {
                         rightPicks++;
                     }
                 }
-                
+
                 if(leftPicks == 5 && rightPicks == 5){
 
 
                     MyFrame frame = new MyFrame(format);
 
-
                     String hero;
+
+                    System.out.println("press enter to start");
+                    try {
+                        hero = br.readLine();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    frame.panel.timer.start();
+
+
                     for(int i = 0; i<frame.draftMode.length(); i++){
                         try {
                             hero = br.readLine();

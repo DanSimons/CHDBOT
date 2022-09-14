@@ -38,8 +38,8 @@ public class MyPanel extends JPanel implements ActionListener{
         this.mode = m;
         this.setupBans();
         timer = new Timer(1000, this);
-        timer.start();
     }
+
 
     public void paint(Graphics g1d){
         super.paint(g1d);
