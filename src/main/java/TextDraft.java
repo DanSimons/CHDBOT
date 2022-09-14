@@ -16,6 +16,8 @@ public class TextDraft {
                 throw new RuntimeException(e);
             }
             if(in.charAt(0) == '1'){
+                // format of draft format code: L = left pick, R = right pick, l = left ban, r = right ban.
+                // ex standard draft would be - lrlrLRRLLrlRRLLR
                 System.out.println("Enter draft format: ");
 
                 String format = null;
