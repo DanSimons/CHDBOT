@@ -1,4 +1,8 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class MyFrame extends JFrame{
@@ -7,11 +11,12 @@ public class MyFrame extends JFrame{
     
     MyPanel panel;
     String draftMode;
+    String scPath;
 
     
     MyFrame(String mode){
         this.draftMode = mode;
-
+        this.scPath = "src/main/resources/.sc/sc.png";
         panel = new MyPanel(this.draftMode);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,6 +27,26 @@ public class MyFrame extends JFrame{
         this.setResizable(false);
     }
 
+
+    //https://stackoverflow.com/questions/5853879/swing-obtain-image-of-jframe
+    public void getScreenShot(String fileName) {
+        Component component = this.getContentPane();
+        BufferedImage image = new BufferedImage(
+                component.getWidth(),
+                component.getHeight(),
+                BufferedImage.TYPE_INT_RGB
+        );
+        // call the Component's paint method, using
+        // the Graphics object of the image.
+        component.paint( image.getGraphics() ); // alternately use .printAll(..)
+
+        try{
+            ImageIO.write(image, "png", new File(fileName));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public void pickHero(int team, String hero){
         Image img = new ImageIcon("src/main/resources/" + hero +".png").getImage();
@@ -43,7 +68,8 @@ public class MyFrame extends JFrame{
         this.panel.modeIndex++;
         this.panel.time = this.panel.START_TIME;
         this.panel.repaint();
-        
+        this.getScreenShot(this.scPath);
+
     }
 
     public void banHero(int team, String hero){
@@ -68,5 +94,6 @@ public class MyFrame extends JFrame{
         this.panel.modeIndex++;
         this.panel.time = this.panel.START_TIME;
         this.panel.repaint();
+        this.getScreenShot(this.scPath);
     }
 }

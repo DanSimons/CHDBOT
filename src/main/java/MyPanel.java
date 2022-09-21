@@ -47,7 +47,7 @@ public class MyPanel extends JPanel implements ActionListener{
         Graphics2D g = (Graphics2D) g1d;
         g.setColor(Color.white);
         
-        this.drawTimers(g);
+        //this.drawTimers(g);
         this.drawLeftTeam(g);
         this.drawRightTeam(g);
         this.drawBans(g);
